@@ -1,3 +1,5 @@
+// Suggested code may be subject to a license. Learn more: ~LicenseLog:2987123369.
+// Suggested code may be subject to a license. Learn more: ~LicenseLog:408146483.
 import 'package:flutter/material.dart';
 
 void main() {
@@ -174,8 +176,13 @@ class _MyHomePageState extends State<MyHomePage> {
                           onSaved: (value) => _age = int.parse(value!),
                         ),
                         SizedBox(height: 12), // Add spacing
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
+                        // Gender selection with label
+                        Align(
+                          alignment: Alignment.centerLeft, // Align label to the left
+                          child: Text('Gender:',
+                              style: TextStyle(fontWeight: FontWeight.bold)),
+                        ),
+                        Row( // Wrap Radio buttons in a Row
                           children: <Widget>[
                             Radio<String>(
                               value: 'Male',

@@ -1,3 +1,5 @@
+// Suggested code may be subject to a license. Learn more: ~LicenseLog:1352796691.
+// Suggested code may be subject to a license. Learn more: ~LicenseLog:3184945934.
 // Suggested code may be subject to a license. Learn more: ~LicenseLog:2987123369.
 // Suggested code may be subject to a license. Learn more: ~LicenseLog:408146483.
 import 'package:flutter/material.dart';
@@ -182,9 +184,12 @@ class _MyHomePageState extends State<MyHomePage> {
                           child: Text('Gender:',
                               style: TextStyle(fontWeight: FontWeight.bold)),
                         ),
-                        Row( // Wrap Radio buttons in a Row
-                          children: <Widget>[
-                            Radio<String>(
+                        // Group the radio buttons
+                        Column(
+                          children: [
+                            ListTile(
+                              title: const Text('Male'),
+                              leading: Radio<String>(
                               value: 'Male',
                               groupValue: _gender,
                               onChanged: (value) {
@@ -193,8 +198,10 @@ class _MyHomePageState extends State<MyHomePage> {
                                 });
                               },
                             ),
-                            Text('Male'),
-                            Radio<String>(
+                            ),
+                            ListTile(
+                              title: const Text('Female'),
+                              leading: Radio<String>(
                               value: 'Female',
                               groupValue: _gender,
                               onChanged: (value) {
@@ -203,7 +210,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 });
                               },
                             ),
-                            Text('Female'),
+                            ),
                           ],
                         ),
                         SizedBox(height: 12), // Add spacing

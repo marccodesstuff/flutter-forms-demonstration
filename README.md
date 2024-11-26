@@ -1,6 +1,6 @@
-# myapp
+# Flutter Forms
 
-A new Flutter project.
+A application that uses various FLutter widgets to develop a forms application.
 
 ## Getting Started
 

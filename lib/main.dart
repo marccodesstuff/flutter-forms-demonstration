@@ -1,3 +1,6 @@
+// Suggested code may be subject to a license. Learn more: ~LicenseLog:1896164575.
+// Suggested code may be subject to a license. Learn more: ~LicenseLog:3584010107.
+// Suggested code may be subject to a license. Learn more: ~LicenseLog:3779175563.
 import 'package:flutter/material.dart';
 
 void main() {
@@ -17,7 +20,6 @@ class MyApp extends StatelessWidget {
   }
 }
 
-
 class MyHomePage extends StatefulWidget {
   @override
   _MyHomePageState createState() => _MyHomePageState();
@@ -33,7 +35,6 @@ class _MyHomePageState extends State<MyHomePage> {
   String _gender = 'Male';
   List<String> _selectedHobbies = [];
 
-
   final List<String> _hobbies = [
     'Reading',
     'Hiking',
@@ -42,21 +43,55 @@ class _MyHomePageState extends State<MyHomePage> {
     'Traveling'
   ];
 
-
   void _submitForm() {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
 
-      print('Last Name: $_lastName');
-      print('First Name: $_firstName');
-      print('Middle Initial: $_middleInitial');
-      print('Address: $_address');
-      print('Age: $_age');
-      print('Gender: $_gender');
-      print('Hobbies: $_selectedHobbies');
+      // Create a string to display user input in the dialog
+      String userInput = '''
+    Last Name: $_lastName
+    First Name: $_firstName
+    Middle Initial: $_middleInitial
+    Address: $_address
+    Age: $_age
+    Gender: $_gender
+    Hobbies: ${_selectedHobbies.join(', ')}
+    ''';
+
+      // Show confirmation dialog
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Confirm Submission'),
+            content: Text(userInput),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop(); // Close the dialog
+                },
+                child: Text('Cancel'),
+              ),
+              TextButton(
+                onPressed: () {
+                  // If accepted, print the values and close the dialog
+                  print('Last Name: $_lastName');
+                  print('First Name: $_firstName');
+                  print('Middle Initial: $_middleInitial');
+                  print('Address: $_address');
+                  print('Age: $_age');
+                  print('Gender: $_gender');
+                  print('Hobbies: $_selectedHobbies');
+                  Navigator.of(context).pop(); // Close the dialog
+                },
+                child: Text('Accept'),
+              ),
+            ],
+          );
+        },
+      );
     }
   }
-
 
   @override
   Widget build(BuildContext context) {

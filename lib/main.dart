@@ -1,6 +1,3 @@
-// Suggested code may be subject to a license. Learn more: ~LicenseLog:1896164575.
-// Suggested code may be subject to a license. Learn more: ~LicenseLog:3584010107.
-// Suggested code may be subject to a license. Learn more: ~LicenseLog:3779175563.
 import 'package:flutter/material.dart';
 
 void main() {
@@ -11,9 +8,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Form Demo',
+      title: 'Flutter Form Demonstration',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        fontFamily: 'Inter', // Use the Inter font
+        primarySwatch: Colors.blue, 
+        inputDecorationTheme:
+            InputDecorationTheme(border: OutlineInputBorder()),
       ),
       home: MyHomePage(),
     );
@@ -63,7 +63,8 @@ class _MyHomePageState extends State<MyHomePage> {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: Text('Confirm Submission'),
+            title: Text('Confirm Submission',
+                style: TextStyle(fontWeight: FontWeight.bold)),
             content: Text(userInput),
             actions: <Widget>[
               TextButton(
@@ -97,7 +98,8 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Flutter Form Demo'),
+        title: Text('Flutter Form Demo',
+            style: TextStyle(color: Colors.black)), // Black text on app bar
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -105,95 +107,131 @@ class _MyHomePageState extends State<MyHomePage> {
           key: _formKey,
           child: SingleChildScrollView(
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                TextFormField(
-                  decoration: InputDecoration(labelText: 'Last Name'),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter your last name';
-                    }
-                    return null;
-                  },
-                  onSaved: (value) => _lastName = value!,
-                ),
-                TextFormField(
-                  decoration: InputDecoration(labelText: 'First Name'),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter your first name';
-                    }
-                    return null;
-                  },
-                  onSaved: (value) => _firstName = value!,
-                ),
-                TextFormField(
-                  decoration: InputDecoration(labelText: 'Middle Initial'),
-                  onSaved: (value) => _middleInitial = value!,
-                ),
-                TextFormField(
-                  decoration: InputDecoration(labelText: 'Address'),
-                  onSaved: (value) => _address = value!,
-                ),
-                TextFormField(
-                  decoration: InputDecoration(labelText: 'Age'),
-                  keyboardType: TextInputType.number,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter your age';
-                    }
-                    final age = int.tryParse(value);
-                    if (age == null || age <= 0) {
-                      return 'Please enter a valid age';
-                    }
-                    return null;
-                  },
-                  onSaved: (value) => _age = int.parse(value!),
-                ),
-                Row(
-                  children: <Widget>[
-                    Radio<String>(
-                      value: 'Male',
-                      groupValue: _gender,
-                      onChanged: (value) {
-                        setState(() {
-                          _gender = value!;
-                        });
-                      },
+                Center(
+                  child: SizedBox(
+                    width: MediaQuery.of(context).size.width *
+                        0.7, // 70% of screen width
+                    child: Column(
+                      children: <Widget>[
+                        TextFormField(
+                          decoration: InputDecoration(
+                            labelText: 'Last Name',
+                          ),
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter your last name';
+                            }
+                            return null;
+                          },
+                          onSaved: (value) => _lastName = value!,
+                        ),
+                        SizedBox(height: 12), // Add spacing
+                        TextFormField(
+                          decoration: InputDecoration(
+                            labelText: 'First Name',
+                          ),
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter your first name';
+                            }
+                            return null;
+                          },
+                          onSaved: (value) => _firstName = value!,
+                        ),
+                        SizedBox(height: 12), // Add spacing
+                        TextFormField(
+                          decoration: InputDecoration(
+                            labelText: 'Middle Initial',
+                          ),
+                          onSaved: (value) => _middleInitial = value!,
+                        ),
+                        SizedBox(height: 12), // Add spacing
+                        TextFormField(
+                          decoration: InputDecoration(
+                            labelText: 'Address',
+                          ),
+                          onSaved: (value) => _address = value!,
+                        ),
+                        SizedBox(height: 12), // Add spacing
+                        TextFormField(
+                          decoration: InputDecoration(
+                            labelText: 'Age',
+                          ),
+                          keyboardType: TextInputType.number,
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter your age';
+                            }
+                            final age = int.tryParse(value);
+                            if (age == null || age <= 0) {
+                              return 'Please enter a valid age';
+                            }
+                            return null;
+                          },
+                          onSaved: (value) => _age = int.parse(value!),
+                        ),
+                        SizedBox(height: 12), // Add spacing
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Radio<String>(
+                              value: 'Male',
+                              groupValue: _gender,
+                              onChanged: (value) {
+                                setState(() {
+                                  _gender = value!;
+                                });
+                              },
+                            ),
+                            Text('Male'),
+                            Radio<String>(
+                              value: 'Female',
+                              groupValue: _gender,
+                              onChanged: (value) {
+                                setState(() {
+                                  _gender = value!;
+                                });
+                              },
+                            ),
+                            Text('Female'),
+                          ],
+                        ),
+                        SizedBox(height: 12), // Add spacing
+                        ..._hobbies.map((hobby) {
+                          return CheckboxListTile(
+                            title: Text(hobby),
+                            activeColor: Theme.of(context).primaryColor,
+                            checkColor: Colors.white, 
+
+                            value: _selectedHobbies.contains(hobby),
+                            onChanged: (value) {
+                              setState(() {
+                                if (value!) {
+                                  _selectedHobbies.add(hobby);
+                                } else {
+                                  _selectedHobbies.remove(hobby);
+                                }
+                              });
+                            },
+                          );
+                        }).toList(),
+                        SizedBox(height: 24), // Add spacing before the button
+                        ElevatedButton(
+                          onPressed: _submitForm,
+                          style: ElevatedButton.styleFrom(
+                            padding: EdgeInsets.symmetric(
+                                vertical: 16, horizontal: 24), 
+                            textStyle: TextStyle(
+                                fontSize: 16, fontWeight: FontWeight.bold),
+                          ),
+                          child: Text('Submit'), 
+                        ),
+                      ],
                     ),
-                    Text('Male'),
-                    Radio<String>(
-                      value: 'Female',
-                      groupValue: _gender,
-                      onChanged: (value) {
-                        setState(() {
-                          _gender = value!;
-                        });
-                      },
-                    ),
-                    Text('Female'),
-                  ],
-                ),
-                Column(
-                  children: _hobbies.map((hobby) {
-                    return CheckboxListTile(
-                      title: Text(hobby),
-                      value: _selectedHobbies.contains(hobby),
-                      onChanged: (value) {
-                        setState(() {
-                          if (value!) {
-                            _selectedHobbies.add(hobby);
-                          } else {
-                            _selectedHobbies.remove(hobby);
-                          }
-                        });
-                      },
-                    );
-                  }).toList(),
-                ),
-                ElevatedButton(
-                  onPressed: _submitForm,
-                  child: Text('Submit'),
+                  ),
                 ),
               ],
             ),

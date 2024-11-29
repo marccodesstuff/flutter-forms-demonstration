@@ -1,7 +1,7 @@
-// Suggested code may be subject to a license. Learn more: ~LicenseLog:1352796691.
-// Suggested code may be subject to a license. Learn more: ~LicenseLog:3184945934.
-// Suggested code may be subject to a license. Learn more: ~LicenseLog:2987123369.
-// Suggested code may be subject to a license. Learn more: ~LicenseLog:408146483.
+// Some of the code was taken from some Stackoverflow post
+// while the functions not covered from the instructional Word document
+// is generated with AI
+
 import 'package:flutter/material.dart';
 
 void main() {
